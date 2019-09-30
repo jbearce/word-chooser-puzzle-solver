@@ -1,0 +1,49 @@
+<html>
+<head>
+<style>
+    body {
+        background: #eeeeee;
+    }
+</style>
+</head>
+<body>
+    <header>
+        <h1>Word Dials Puzzle Solver</h1>
+    </header>
+    <main>
+        <article>
+            <p>Suppose you have a puzzle where words have to be made. 
+                The word has a set length, and each character in the 
+                word is chosen from its own pile.
+            </p>
+            <p>
+                For example, let's say you have a 4-letter word.<br />
+                Character 1 can be any of:<br />
+                &nbsp; &nbsp; &nbsp; A, C, R, G<br />
+                Character 2 can be any of:<br />
+                &nbsp; &nbsp; &nbsp; N, F, C, L, E, J<br />
+                Character 3 can be any of:<br />
+                &nbsp; &nbsp; &nbsp; O, D, N, E<br />
+            </p>
+            <p>
+                This can form words "red", "and", "ale", and possibly more. Use the puzzle 
+                solver below to find all words that can be made from your puzzle.
+            </p>
+        </article>
+        <form>
+            <label for="qty_tumblers">Enter number of letters in word:</label>
+            <input id="qty_tumblers" type="number" />
+            <input type="button" value="Next" id="generate_tumblers" />
+            <section id="tumbler_values">
+            </section>
+            <section id="output">
+                <label for="output_box">Results:</label>
+                <output>
+
+                </output>
+            </section>
+        </form>
+    </main>
+    <script type="text/javascript" src="script.js"></script>
+</body>
+</html>
