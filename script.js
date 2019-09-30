@@ -13,7 +13,7 @@ var tumblerSets = [[]];
 //goal: take input file url (text string) and parse it into an array
 document.onreadystatechange = function import_file() 
 {
-    var dictionaryFile = "dictionary.txt";
+    var dictionaryFile = "dictionary.json";
     var output = [];
     var file = new XMLHttpRequest();
     file.open("GET", dictionaryFile, false);
@@ -138,7 +138,7 @@ calcButton.onclick = function get_matches()
     {   
         var curr_word = print_code(tumblerSets, tumblerPositions);
         add_if_word(curr_word);
-        
+
         tumblerPositions[lastPos]++;
         if (tumblerPositions[lastPos] > tumblerMaxes[lastPos])
         {
