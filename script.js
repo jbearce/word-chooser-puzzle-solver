@@ -66,7 +66,7 @@ function add_if_word(inWord)
     }
 }
 
-//dependency of generateTumblers. 
+//dependency of generateTumblers 
 function add_children(wrapper, numChildren, baseText, baseId) 
 {
     for(var i = 0; i < numChildren; ++i)
@@ -117,6 +117,7 @@ document.getElementById("generate_tumblers").onclick = function generate_tumbler
 var calcButton = document.createElement("input");
 calcButton.onclick = function get_matches() 
 {
+    console.log("Initiate puzzle solver...");
     var matches = [[]];
     var word = "";
     var tumblerMaxes = [[]];
@@ -159,6 +160,7 @@ calcButton.onclick = function get_matches()
             }
         }
     }
-    return matches;
+    var output = document.getElementById("output_box");
+    output.value = matches;
 }
 
