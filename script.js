@@ -18,7 +18,7 @@ document.onreadystatechange = function import_file()
     var file = new XMLHttpRequest();
     file.open("GET", dictionaryFile, false);
     file.send();
-    file.onreadystatechange() = function() 
+    file.onreadystatechange = function() 
     {
         if (file.readyState == 4 && (file.status == 200 || file.status == 0)) 
         {
