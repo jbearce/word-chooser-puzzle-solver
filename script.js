@@ -161,6 +161,7 @@ calcButton.onclick = function get_matches()
         }
     }
     var output = document.getElementById("output_box");
-    output.value = matches;
+    output.innerHTML = matches;
+    console.log("Done!");
 }
 
