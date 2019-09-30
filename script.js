@@ -138,6 +138,7 @@ calcButton.onclick = function get_matches()
     {   
         var curr_word = print_code(tumblerSets, tumblerPositions);
         add_if_word(curr_word);
+        
         tumblerPositions[lastPos]++;
         if (tumblerPositions[lastPos] > tumblerMaxes[lastPos])
         {
