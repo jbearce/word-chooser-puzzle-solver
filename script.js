@@ -95,7 +95,7 @@ function add_if_word(inWord)
     var wordSize = inWord.length;
     var wordListSize = wordList.length;
     var checkedCount = 0;
-    console.log("Checking against " + wordListSize.length + " words...");
+    console.log("Checking against " + wordListSize + " words...");
     for(var i = 0; i < wordListSize; ++i) 
     {
         if(i < 20)
