@@ -15,18 +15,16 @@ document.onreadystatechange = function import_file()
 {
     var dictionaryFile = "dictionary.json";
     var output = [];
-    var file = new XMLHttpRequest();
-    file.open("GET", dictionaryFile, false);
-    file.send();
-    file.onreadystatechange = function() 
+    var req = new XMLHttpRequest();
+    req.resonseType = "json";
+    req.open("GET", dictionaryFile, true);
+    req.send();
+    req.onload = function() 
     {
-        if (file.readyState == 4 && (file.status == 200 || file.status == 0)) 
-        {
-            output = JSON.parse(jsonFile.responseText);
-        }
+        output = JSON.parse(req.responseText);
     }
 
-    return output.data;
+    return output;
 }
 
 //dependency of generateTumblers 
