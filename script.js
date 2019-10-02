@@ -15,16 +15,15 @@ document.onreadystatechange = function import_file()
 {
     var dictionaryFile = "dictionary.json";
     var output = [];
+
     var req = new XMLHttpRequest();
     req.resonseType = "json";
     req.open("GET", dictionaryFile, true);
-    req.send();
     req.onload = function() 
     {
-        output = JSON.parse(req.responseText);
+        wordList = req.response;
     }
-
-    return output;
+    req.send(null);
 }
 
 //dependency of generateTumblers 
