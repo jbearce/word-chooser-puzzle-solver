@@ -165,7 +165,10 @@ calcButton.onclick = function get_matches()
     var lastPos = tumblerSets.length - 1;
     var currPos = lastPos;
     var carriedOne = false;
-    while(currPos >= 0)
+
+    console.log("lastpos: " + lastPos);
+    console.log("currPos: " + currPos);
+    while(currPos >= 0 && false == true)
     {   
         var curr_word = print_code(tumblerSets, tumblerPositions);
         add_if_word(curr_word);
