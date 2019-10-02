@@ -4,6 +4,7 @@
  
 var wordList = [];
 var tumblerSets = [[]];
+var matches = [];
 
 /************************
  * Functions
@@ -95,35 +96,33 @@ function add_if_word(inWord)
     var wordListSize = wordList.length;
     var checkedCount = 0;
     console.log("Checking against " + wordListSize + " words...");
-    for(var i = 0; i < wordListSize; ++i) 
+    for(var i = 0; i < wordListSize; ++i)
     {
         if(i < 20)
         {
             console.log(wordList[i]);
         }
-        if (wordList[i].length == wordSize) 
+        if (wordList[i].length == wordSize)
         {
             var dictionaryWord = wordList[i];
-            for(var j = 0; j < wordSize; ++j) 
+            for(var j = 0; j < wordSize; ++j)
             {
                 //word identified as incorrect
-                if(inWord[j] != dictionaryWord[j]) 
+                if(inWord[j] != dictionaryWord[j])
                 {
                     console.log("word not a match: " + dictionaryWord);
                     break;
                 } 
                 //word identified as correct by process of elimination
-                else if (j == wordSize - 1) 
+                else if (j == wordSize - 1)
                 {
-                    wordList.push(inWord);
+                    matches.push(inWord);
                     console.log("Word found: " + inWord);
                     break;
                 }
             }
         }
-        checkedCount++;
     }
-    console.log("no word found. Completed " + checkedCount + " searches.");
 }
 
 /*
@@ -132,10 +131,9 @@ function add_if_word(inWord)
     into an array and returned
 */
 var calcButton = document.createElement("input");
-calcButton.onclick = function get_matches() 
+calcButton.onclick = function get_matches()
 {
     console.log("Initiate puzzle solver...");
-    var matches = [[]];
     var word = "";
     var tumblerMaxes = [];
     var tumblerContainer = document.getElementById("tumbler_values");
@@ -144,21 +142,23 @@ calcButton.onclick = function get_matches()
     var tumblerSets = [[]];
 
     //populate tumblerSets and tumblerLimits
-    for(var i = 0; i < tumblerCount; ++i) 
+    for(var i = 0; i < tumblerCount; ++i)
     {
-        tumblerSets.push();
         var currTumbler = "tumbler_letters_" + i;
         currTumbler = document.getElementById(currTumbler);
         var tumblerString = currTumbler.value;
-        tumblerMaxes.push(currTumbler.value.length);
-        for(var j = 0; j < tumblerString.length; ++j)
-        {
-            tumblerSets[i] += tumblerString[j];
+        var tumblerI = [];
+        for(var j = 0; j < tumblerString.size; ++j) {
+            tumblerI.push(tumblerString[j]);
         }
+        tumblerSets.push(tumblerI);
+        tumblerMaxes.push(tumblerSets[i].length);
+        
     }
 
     var tumblerPositions = [];
-    for(var i = 0; i < tumblerSets.length; ++i) {
+    for(var i = 0; i < tumblerSets.length; ++i) 
+    {
         tumblerPositions.push(0);
     }
 
@@ -195,4 +195,3 @@ calcButton.onclick = function get_matches()
     console.log("Done!");
     console.log(matches);
 }
-
