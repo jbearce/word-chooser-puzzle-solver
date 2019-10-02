@@ -17,16 +17,21 @@ document.onreadystatechange = function import_file()
     var dictionaryFile = "dictionary.json";
     var output = [];
 
-    var req = new XMLHttpRequest();
-    req.resonseType = "json";
-    req.open("GET", dictionaryFile, true);
-    req.onload = function() 
-    {
-        var contents = req.response;
-        var clean = JSON.parse(contents);
-        WordList = Object.values(clean);
-    }
-    req.send(null);
+    fetch(dictionaryFile)
+    .then(function(response) {
+      if (!response.ok) {
+        throw new Error("HTTP error, status = " + response.status);
+      }
+      return response.json();
+    })
+    .then(function(json) {
+      for(var i = 0; i < json.data.length; i++) {
+        var listItem = document.createElement('li');
+        output.push(json.data[i]);
+      }
+    });
+
+    wordList = output;
 }
 
 //dependency of generateTumblers 
@@ -136,7 +141,6 @@ calcButton.onclick = function get_matches()
     console.log("Initiate puzzle solver...");
     var word = "";
     var tumblerMaxes = [];
-    var tumblerContainer = document.getElementById("tumbler_values");
     var tumblerCount = document.getElementById("qty_tumblers");
     tumblerCount = tumblerCount.value;
     var tumblerSets = [[]];
