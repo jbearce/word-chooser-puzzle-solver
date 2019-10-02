@@ -152,7 +152,7 @@ calcButton.onclick = function get_matches()
     console.log("Tumblers[0] contain:");
     console.log(tumblerSets[0]);
     var tumblerPositions = [];
-    for(var i = 0; i < tumblerPositions.length; ++i) {
+    for(var i = 0; i < tumblerSets.length; ++i) {
         tumblerPositions.push(0);
     }
 
