@@ -93,15 +93,22 @@ function print_code(input, inputPos)
 */
 function add_if_word(inWord)
 {
-    var found_word = false;
     var wordSize = inWord.length;
     var wordListSize = wordList.length;
-    for(var i = 0; i < wordListSize; ++i) {
-        if (wordList[i].length == wordSize) {
-            for(var j = 0; j < wordSize; ++j) {
-                if(inWord[j] != wordList[i][j]) {
+    for(var i = 0; i < wordListSize; ++i) 
+    {
+        if (wordList[i].length == wordSize) 
+        {
+            for(var j = 0; j < wordSize; ++j) 
+            {
+                //word identified as incorrect
+                if(inWord[j] != wordList[i][j]) 
+                {
                     break;
-                } else if (j == wordSize - 1) {
+                } 
+                //word identified as correct by process of elimination
+                else if (j == wordSize - 1) 
+                {
                     wordList.push(inWord);
                     console.log("Word found: " + inWord);
                     break;
@@ -142,6 +149,8 @@ calcButton.onclick = function get_matches()
         }
     }
 
+    console.log("Tumblers[0] contain:");
+    console.log(tumblerSets[0]);
     var tumblerPositions = [];
     for(var i = 0; i < tumblerPositions.length; ++i) {
         tumblerPositions.push(0);
