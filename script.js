@@ -59,7 +59,6 @@ function add_children(wrapper, numChildren, baseText, baseId)
 document.getElementById("generate_tumblers").onclick = function generate_tumblers() 
 {
     var numChildren = document.getElementById("qty_tumblers");
-    console.log(numChildren);
     numChildren = numChildren.value;
     var tumblerValuesWrapper = document.getElementById("tumbler_values");
     var p = document.createElement("p");
@@ -95,14 +94,16 @@ function add_if_word(inWord)
 {
     var wordSize = inWord.length;
     var wordListSize = wordList.length;
+    var checkedCount = 0;
     for(var i = 0; i < wordListSize; ++i) 
     {
         if (wordList[i].length == wordSize) 
         {
+            var dictionaryWord = wordList[i];
             for(var j = 0; j < wordSize; ++j) 
             {
                 //word identified as incorrect
-                if(inWord[j] != wordList[i][j]) 
+                if(inWord[j] != dictionaryWord[j]) 
                 {
                     break;
                 } 
@@ -115,7 +116,9 @@ function add_if_word(inWord)
                 }
             }
         }
+        checkedCount++;
     }
+    console.log("no word found. Completed " + checkedCount + " searches.");
 }
 
 /*
@@ -149,8 +152,6 @@ calcButton.onclick = function get_matches()
         }
     }
 
-    console.log("Tumblers[0] contain:");
-    console.log(tumblerSets[0]);
     var tumblerPositions = [];
     for(var i = 0; i < tumblerSets.length; ++i) {
         tumblerPositions.push(0);
