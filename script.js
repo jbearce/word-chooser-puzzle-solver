@@ -21,7 +21,9 @@ document.onreadystatechange = function import_file()
     req.open("GET", dictionaryFile, true);
     req.onload = function() 
     {
-        wordList = req.response;
+        var contents = req.response;
+        var clean = JSON.parse(contents);
+        WordList = Object.values(clean);
     }
     req.send(null);
 }
