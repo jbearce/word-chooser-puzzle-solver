@@ -29,43 +29,6 @@ document.onreadystatechange = function import_file()
     return output.data;
 }
 
-/*
-    Outputs the current "word" written by the tumblers to a string. Developers can then
-    process this however they'd like.
-*/
-function print_code(input, inputPos) 
-{
-    output = "";
-    inputSize = input.length;
-    for(var i = 0; i < inputSize; ++i) 
-    {
-        output += input[i][inputPos[i]];
-    }
-    return output;
-}
-
-/*
-    Checks whether the "word" currently displayed is a known real word
-*/
-function add_if_word(inWord)
-{
-    var found_word = false;
-    var wordSize = inWord.length;
-    var wordListSize = wordList.length;
-    for(var i = 0; i < wordListSize; ++i) {
-        if (wordList[i].length == wordSize) {
-            for(var j = 0; j < wordSize; ++j) {
-                if(inWord[j] != wordList[i][j]) {
-                    break;
-                } else if (j == wordSize - 1) {
-                    wordList.push(inWord);
-                    break;
-                }
-            }
-        }
-    }
-}
-
 //dependency of generateTumblers 
 function add_children(wrapper, numChildren, baseText, baseId) 
 {
@@ -109,6 +72,45 @@ document.getElementById("generate_tumblers").onclick = function generate_tumbler
     tumblerValuesWrapper.appendChild(calcButton);
 }
 
+
+/*
+    Outputs the current "word" written by the tumblers to a string. Developers can then
+    process this however they'd like.
+*/
+function print_code(input, inputPos) 
+{
+    output = "";
+    inputSize = input.length;
+    for(var i = 0; i < inputSize; ++i) 
+    {
+        output += input[i][inputPos[i]];
+    }
+    return output;
+}
+
+/*
+    Checks whether the "word" currently displayed is a known real word
+*/
+function add_if_word(inWord)
+{
+    var found_word = false;
+    var wordSize = inWord.length;
+    var wordListSize = wordList.length;
+    for(var i = 0; i < wordListSize; ++i) {
+        if (wordList[i].length == wordSize) {
+            for(var j = 0; j < wordSize; ++j) {
+                if(inWord[j] != wordList[i][j]) {
+                    break;
+                } else if (j == wordSize - 1) {
+                    wordList.push(inWord);
+                    console.log("Word found: " + inWord);
+                    break;
+                }
+            }
+        }
+    }
+}
+
 /*
     Iterates through every combination of characters that can be formed. On each iteration,
     the formed "word" is passed to is_word() for evaluation. Identified words are compiled
@@ -120,16 +122,29 @@ calcButton.onclick = function get_matches()
     console.log("Initiate puzzle solver...");
     var matches = [[]];
     var word = "";
-    var tumblerMaxes = [[]];
-    for(var i = 0; i < tumblerSets.length; ++i)
+    var tumblerMaxes = [];
+    var tumblerContainer = document.getElementById("tumbler_values");
+    var tumblerCount = document.getElementById("qty_tumblers");
+    tumblerCount = tumblerCount.value;
+    var tumblerSets = [[]];
+
+    //populate tumblerSets and tumblerLimits
+    for(var i = 0; i < tumblerCount; ++i) 
     {
-        tumblerMaxes.push(tumblerSets[i].length);
+        tumblerSets.push();
+        var currTumbler = "tumbler_letters_" + i;
+        currTumbler = tumblerContainer.getElementById(currTumbler);
+        var tumblerString = currTumbler.value;
+        tumblerMaxes.push(currTumbler.value.length);
+        for(var j = 0; j < tumblerString.length; ++j)
+        {
+            tumblerSets[i] += tumblerString[j];
+        }
     }
 
-    var tumblerPositions = [[]];
-    var tumblerPositionsSize = tumblerPositions.length;
-    for(var i = 0; i < tumblerPositionsSize; ++i) {
-        tumblerPositions[i] = 0;
+    var tumblerPositions = [];
+    for(var i = 0; i < tumblerPositions.length; ++i) {
+        tumblerPositions.push(0);
     }
 
     var lastPos = tumblerSets.length - 1;
@@ -163,5 +178,6 @@ calcButton.onclick = function get_matches()
     var output = document.getElementById("output_box");
     output.innerHTML = matches;
     console.log("Done!");
+    console.log(matches);
 }
 
