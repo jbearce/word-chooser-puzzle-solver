@@ -140,7 +140,7 @@ calcButton.onclick = function get_matches()
     {
         tumblerSets.push();
         var currTumbler = "tumbler_letters_" + i;
-        currTumbler = tumblerContainer.getElementById(currTumbler);
+        currTumbler = document.getElementById(currTumbler);
         var tumblerString = currTumbler.value;
         tumblerMaxes.push(currTumbler.value.length);
         for(var j = 0; j < tumblerString.length; ++j)
