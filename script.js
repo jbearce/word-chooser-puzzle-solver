@@ -109,6 +109,7 @@ function add_if_word(inWord)
                 //word identified as incorrect
                 if(inWord[j] != dictionaryWord[j]) 
                 {
+                    console.log("word not a match: " + dictionaryWord);
                     break;
                 } 
                 //word identified as correct by process of elimination
