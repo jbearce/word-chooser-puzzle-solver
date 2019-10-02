@@ -97,6 +97,10 @@ function add_if_word(inWord)
     var checkedCount = 0;
     for(var i = 0; i < wordListSize; ++i) 
     {
+        if(i < 20)
+        {
+            console.log(wordList[i]);
+        }
         if (wordList[i].length == wordSize) 
         {
             var dictionaryWord = wordList[i];
